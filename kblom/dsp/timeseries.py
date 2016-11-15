@@ -53,7 +53,7 @@ class RollingWindow(ABC):
         self.window_delay = np.int((window_len-1)/2)
 
     def roll(self, vector, end=False):
-        """Returns a generator for the rolling window subsample.
+        """Returns a generator for the rolling window subsamples.
 
         Multiple calls will remember the previous state so you can call
         roll() in real-time for chucks of data.  Calling sample-by-sample is
@@ -83,7 +83,11 @@ class RollingWindow(ABC):
 
     @abstractmethod
     def operation(self, window):
-        """Implement this to calculate result for window subsample."""
+        """Implement this to calculate result for window subsample.
+        
+        Keyword arguments:
+            window (np.array): The current window of samples.
+        """
         pass
 
 
