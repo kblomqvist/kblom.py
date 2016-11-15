@@ -31,7 +31,7 @@ import numpy as np
 class RollingWindow(ABC):
     """Abstract rolling window to be inherited by filter classes.
 
-    Note!  The implementation will delay the subsamples by N-1/2, where
+    Note!  The implementation will delay the subsamples by (N-1)/2, where
     N is the length of the window.
 
     Keyword arguments:
