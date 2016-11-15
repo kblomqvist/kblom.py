@@ -31,8 +31,8 @@ import numpy as np
 class RollingWindow(ABC):
     """Abstract rolling window to be inherited by filter classes.
 
-    Note!  The implementation will delay the subsamples by (N-1)/2, where
-    N is the length of the window.
+    Note!  The implementation will delay subsamples by (N-1)/2,
+    where N is the length of the window.
 
     Keyword arguments:
         window_len (int|double): Window length as an integer or in seconds
@@ -73,20 +73,20 @@ class RollingWindow(ABC):
             if len(self.window) > self.window_len:
                 self.window.pop(0)
             if len(self.window) > self.window_delay:
-                yield self.operation(np.array(self.window))
+                yield self.window_operation(self.window)
 
         if end:
             while len(self.window) > self.window_delay + 1:
                 self.window.pop(0)
-                yield self.operation(np.array(self.window))
+                yield self.window_operation(self.window)
             self.window[:] = []
 
     @abstractmethod
-    def operation(self, window):
+    def window_operation(self, window):
         """Implement this to calculate result for window subsample.
         
         Keyword arguments:
-            window (np.array): The current window of samples.
+            window (list): The current window of samples.
         """
         pass
 
@@ -108,7 +108,7 @@ class RollingMean(RollingWindow):
         if end:
             self.sum = None
 
-    def operation(self, window):
+    def window_operation(self, window):
         """A simple solution would have been 'return np.mean(window)',
         but it would had a bad performance.  The below solution avoids
         multiple calculations of the same thing, i.e. when calculating
@@ -138,13 +138,13 @@ class RollingRootMeanSquare(RollingMean):
     def window_append(self, sample):
         self.window.append(sample**2)  # Avoid unnecessary calculation of ^2
 
-    def operation(self, window):
-        result = RollingMean.operation(self, window)
+    def window_operation(self, window):
+        result = RollingMean.window_operation(self, window)
         return np.sqrt(result)
 
 
 class RollingMedian(RollingWindow):
     """Rolling median filter."""
 
-    def operation(self, window):
+    def window_operation(self, window):
         return np.median(window)
