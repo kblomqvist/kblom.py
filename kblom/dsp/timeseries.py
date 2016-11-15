@@ -69,7 +69,7 @@ class RollingWindow(ABC):
             end (bool): True will "reset" the class.
         """
         for sample in vector:
-            self.window.append(sample)
+            self.window_append(sample)
             if len(self.window) > self.window_len:
                 self.window.pop(0)
             if len(self.window) > self.window_delay:
@@ -89,6 +89,10 @@ class RollingWindow(ABC):
             window (np.array): The current window of samples.
         """
         pass
+
+    def window_append(self, sample):
+        """Override to modify sample before it's appended to window."""
+        self.window.append(sample)
 
 
 class RollingMean(RollingWindow):
@@ -131,8 +135,11 @@ class RollingMean(RollingWindow):
 class RollingRootMeanSquare(RollingMean):
     """Rolling RMS filter."""
 
+    def window_append(self, sample):
+        self.window.append(sample**2)  # Avoid unnecessary calculation of ^2
+
     def operation(self, window):
-        result = RollingMean.operation(self, window**2)
+        result = RollingMean.operation(self, window)
         return np.sqrt(result)
 
 
