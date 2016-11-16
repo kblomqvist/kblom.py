@@ -1,10 +1,13 @@
 # kblom.py
+[![Python3](https://img.shields.io/badge/python-3-green.svg)
+![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kblomqvist/kblom.py/blob/master/LICENSE)
+
 
 ```bash
-pip install -e https://github.com/kblomqvist/kblom.py.git
+pip3 install -e https://github.com/kblomqvist/kblom.py.git
 ```
 
-```ipython
+```python
 >>> from kblom.dsp import timeseries as ts
 >>> sma = ts.RollingMean(0.1, fs=175)
 >>> x = range(100)
