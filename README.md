@@ -1,6 +1,6 @@
 # kblom.py
-[![Python3](https://img.shields.io/badge/python-3-green.svg)
-![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kblomqvist/kblom.py/blob/master/LICENSE)
+![Python3](https://img.shields.io/badge/python-3-green.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kblomqvist/kblom.py/blob/master/LICENSE)
 
 
 ```bash
