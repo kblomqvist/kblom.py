@@ -4,7 +4,8 @@
 
 
 ```bash
-pip3 install -e https://github.com/kblomqvist/kblom.py.git
+git clone https://github.com/kblomqvist/kblom.py.git
+pip3 install -e kblom.py
 ```
 
 ```python
