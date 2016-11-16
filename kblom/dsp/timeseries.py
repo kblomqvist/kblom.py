@@ -79,7 +79,7 @@ class RollingWindow(ABC):
             while len(self.window) > self.window_delay + 1:
                 self.window.pop(0)
                 yield self.window_operation(self.window)
-            self.window[:] = []
+            self.window[:] = []  # reset
 
     @abstractmethod
     def window_operation(self, window):
@@ -99,8 +99,8 @@ class RollingMean(RollingWindow):
     """Rolling mean aka. simple moving average (SMA) filter."""
 
     def __init__(self, window_len, fs=None):
-        self.sum = None
         RollingWindow.__init__(self, window_len, fs)
+        self.sum = None
 
     def roll(self, vector, end=False):
         for result in RollingWindow.roll(self, vector, end):
@@ -113,8 +113,7 @@ class RollingMean(RollingWindow):
         but it would had a bad performance.  The below solution avoids
         multiple calculations of the same thing, i.e. when calculating
         successive values, a new value comes into the sum and an old value
-        drops out, meaning a full summation each time is unnecessary for
-        this simple case.
+        drops out, meaning a full summation each time is unnecessary.
         """
         if self.sum is None:
             self.sum = np.sum(window)
