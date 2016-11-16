@@ -98,7 +98,7 @@ class RollingWindow(ABC):
 class RollingMean(RollingWindow):
     """Rolling mean aka. simple moving average (SMA) filter."""
 
-    def __init__(self, window_len, fs):
+    def __init__(self, window_len, fs=None):
         self.sum = None
         RollingWindow.__init__(self, window_len, fs)
 
