@@ -13,5 +13,5 @@ pip3 install -e kblom.py
 >>> sma = ts.RollingMean(0.1, fs=175)
 >>> x = range(100)
 >>> y = list(sma.roll(x, end=True))
->>> assert len(x) is len(y)
+>>> assert len(x) == len(y)
 ```
