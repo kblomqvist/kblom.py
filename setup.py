@@ -7,7 +7,7 @@ setup(
     author="Kim Blomqvist",
     author_email="kblomqvist@iki.fi",
     description="Kim Blomqvist's personal Python library",
-    license="MIT",
+    license="MIT License",
     version="dev",
     packages=find_packages(),
     include_package_data=True,
