@@ -6,9 +6,9 @@ setup(
     name="kblom",
     author="Kim Blomqvist",
     author_email="kblomqvist@iki.fi",
-    version="dev",
     description="Kim Blomqvist's personal Python library",
     license="MIT",
+    version="dev",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
