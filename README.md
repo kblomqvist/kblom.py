@@ -18,13 +18,14 @@ git pull
 
 ### Rolling window (aka sliding window)
 
-Built-in rolling window filters:
-- `RollingMean`
-- `RollingMedian`
-- `RollingRootMeanSquare`
-- `RollingMax`
+Built-in rolling window filters: `RollingMean`, `RollingMedian`, `RollingRootMeanSquare`, `RollingMax`
 
-You can create your own rolling window by inheriting from `ts.RollingWindow`, e.g. rolling median filter has been implemented like this
+<img title="rolling mean" src="https://github.com/kblomqvist/kblom.py/blob/master/img/rolling_mean.png" width="200" />
+<img title="rolling median" src="https://github.com/kblomqvist/kblom.py/blob/master/img/rolling_median.png" width="200" />
+<img title="rolling rms" src="https://github.com/kblomqvist/kblom.py/blob/master/img/rolling_rms.png" width="200" />
+<img title="rolling max" src="https://github.com/kblomqvist/kblom.py/blob/master/img/rolling_max.png" width="200" />
+
+You can create your own rolling window by inheriting from `RollingWindow`, e.g. rolling median filter has been implemented like this
 
 ```python
 from kblom.dsp import timeseries as ts
