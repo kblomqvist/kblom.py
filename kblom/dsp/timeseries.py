@@ -147,3 +147,23 @@ class RollingMedian(RollingWindow):
 
     def window_operation(self, window):
         return np.median(window)
+
+
+class RollingMax(RollingWindow):
+
+    def __init__(self, window_len, fs):
+        super().__init__(window_len, fs)
+        self.current_max = None
+
+    def roll(self, vector, end=False):
+        for result in super().roll(vector, end):
+            yield result
+        if end:
+            self.current_max = None
+
+    def window_operation(self, window):
+        if self.current_max is None:
+            self.current_max = np.max(window)
+        if window[-1] > self.current_max:
+            self.current_max = window[-1]
+        yield self.current_max
