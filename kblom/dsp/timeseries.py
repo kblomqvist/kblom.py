@@ -166,4 +166,4 @@ class RollingMax(RollingWindow):
             self.current_max = np.max(window)
         if window[-1] > self.current_max:
             self.current_max = window[-1]
-        yield self.current_max
+        return self.current_max

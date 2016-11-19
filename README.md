@@ -22,6 +22,7 @@ Built-in rolling window filters:
 - `RollingMean`
 - `RollingMedian`
 - `RollingRootMeanSquare`
+- `RollingMax`
 
 You can create your own rolling window by inheriting from `ts.RollingWindow`, e.g. rolling median filter has been implemented like this
 
