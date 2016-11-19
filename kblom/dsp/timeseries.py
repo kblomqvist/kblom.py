@@ -99,11 +99,11 @@ class RollingMean(RollingWindow):
     """Rolling mean aka. simple moving average (SMA) filter."""
 
     def __init__(self, window_len, fs=None):
-        RollingWindow.__init__(self, window_len, fs)
+        super().__init__(window_len, fs)
         self.sum = None
 
     def roll(self, vector, end=False):
-        for result in RollingWindow.roll(self, vector, end):
+        for result in super().roll(vector, end):
             yield result
         if end:
             self.sum = None
@@ -138,7 +138,7 @@ class RollingRootMeanSquare(RollingMean):
         self.window.append(sample**2)  # Avoid unnecessary calculation of ^2
 
     def window_operation(self, window):
-        result = RollingMean.window_operation(self, window)
+        result = super().window_operation(window)
         return np.sqrt(result)
 
 
